@@ -3,8 +3,8 @@ package ui
 import (
 	"github.com/charmbracelet/bubbles/spinner"
 	tea "github.com/charmbracelet/bubbletea"
-	"github.com/rgrouls/venvcleaner/cleaner"
-	"github.com/rgrouls/venvcleaner/model"
+	"github.com/raoulg/venvcleaner/cleaner"
+	"github.com/raoulg/venvcleaner/model"
 )
 
 // Update handles all UI events and state transitions

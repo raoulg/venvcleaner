@@ -6,8 +6,8 @@ import (
 	"path/filepath"
 
 	tea "github.com/charmbracelet/bubbletea"
-	"github.com/rgrouls/venvcleaner/scanner"
-	"github.com/rgrouls/venvcleaner/ui"
+	"github.com/raoulg/venvcleaner/scanner"
+	"github.com/raoulg/venvcleaner/ui"
 )
 
 func main() {

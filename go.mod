@@ -1,4 +1,4 @@
-module github.com/rgrouls/venvcleaner
+module github.com/raoulg/venvcleaner
 
 go 1.25.5
 

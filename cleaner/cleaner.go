@@ -6,7 +6,7 @@ import (
 	"os/exec"
 	"runtime"
 
-	"github.com/rgrouls/venvcleaner/model"
+	"github.com/raoulg/venvcleaner/model"
 )
 
 // DetectRemovalTool checks if 'rip' is available, otherwise falls back to 'rm' or 'native'

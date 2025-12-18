@@ -6,7 +6,7 @@ import (
 	"path/filepath"
 	"time"
 
-	"github.com/rgrouls/venvcleaner/model"
+	"github.com/raoulg/venvcleaner/model"
 )
 
 // FindGitRepos walks the filesystem starting from rootPath and finds all git repositories

@@ -6,7 +6,7 @@ import (
 	"github.com/charmbracelet/bubbles/progress"
 	"github.com/charmbracelet/bubbles/spinner"
 	tea "github.com/charmbracelet/bubbletea"
-	"github.com/rgrouls/venvcleaner/model"
+	"github.com/raoulg/venvcleaner/model"
 )
 
 // Model represents the Bubbletea application state

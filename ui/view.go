@@ -7,7 +7,7 @@ import (
 	"time"
 
 	"github.com/charmbracelet/lipgloss"
-	"github.com/rgrouls/venvcleaner/model"
+	"github.com/raoulg/venvcleaner/model"
 )
 
 // Color scheme - More vibrant and colorful!
