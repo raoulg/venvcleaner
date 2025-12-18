@@ -10,101 +10,138 @@ import (
 	"github.com/raoulg/venvcleaner/model"
 )
 
-// Color scheme - More vibrant and colorful!
+// Synthwave/Cyberpunk Color Palette - Cohesive and Beautiful!
 var (
-	// Title styles - bright cyan with bold
+	// Core palette colors
+	neonPink    = lipgloss.Color("205") // Hot pink
+	neonPurple  = lipgloss.Color("141") // Medium purple
+	deepPurple  = lipgloss.Color("99")  // Deep purple
+	neonCyan    = lipgloss.Color("51")  // Electric cyan
+	neonTeal    = lipgloss.Color("87")  // Turquoise
+	electricBlue = lipgloss.Color("81") // Electric blue
+	neonYellow  = lipgloss.Color("227") // Neon yellow/gold
+	darkBg      = lipgloss.Color("53")  // Dark purple background
+
+	// Title - Neon pink gradient feel
 	titleStyle = lipgloss.NewStyle().
 			Bold(true).
-			Foreground(lipgloss.Color("51")). // Bright cyan
+			Foreground(neonPink).
 			MarginBottom(1)
 
-	// Header styles - bright magenta
+	// Headers - Electric cyan
 	headerStyle = lipgloss.NewStyle().
-			Foreground(lipgloss.Color("213")). // Bright magenta
+			Foreground(neonCyan).
 			Bold(true).
 			MarginBottom(1)
 
-	// Subheader style - blue
+	// Subheaders - Turquoise
 	subheaderStyle = lipgloss.NewStyle().
-			Foreground(lipgloss.Color("117")). // Light blue
+			Foreground(neonTeal).
 			Italic(true)
 
-	// Selected items - bright purple with background
+	// Selected items - Hot pink on dark purple
 	selectedStyle = lipgloss.NewStyle().
-			Foreground(lipgloss.Color("219")). // Bright pink/purple
-			Background(lipgloss.Color("53")).  // Dark purple background
+			Foreground(neonPink).
+			Background(darkBg).
 			Bold(true)
 
-	// Cursor style - bright green
+	// Cursor - Electric cyan
 	cursorStyle = lipgloss.NewStyle().
-			Foreground(lipgloss.Color("46")). // Bright green
+			Foreground(neonCyan).
 			Bold(true)
 
-	// Date colors - more vibrant
+	// Date colors - Purple to Pink gradient
 	recentStyle = lipgloss.NewStyle().
-			Foreground(lipgloss.Color("46")) // Bright green
+			Foreground(neonTeal) // Teal for recent
 
 	oldStyle = lipgloss.NewStyle().
-			Foreground(lipgloss.Color("226")) // Bright yellow
+			Foreground(neonPurple) // Purple for medium
 
 	veryOldStyle = lipgloss.NewStyle().
-			Foreground(lipgloss.Color("196")) // Bright red
+			Foreground(neonPink) // Pink for old
 
-	// Size color styles - more vibrant
+	// Size colors - Teal to Yellow to Pink gradient
 	sizeSmallStyle = lipgloss.NewStyle().
-			Foreground(lipgloss.Color("46")). // Bright green
+			Foreground(neonTeal). // Teal for small
 			Bold(true)
 
 	sizeMediumStyle = lipgloss.NewStyle().
-			Foreground(lipgloss.Color("226")). // Bright yellow
+			Foreground(electricBlue). // Blue for medium
 			Bold(true)
 
 	sizeLargeStyle = lipgloss.NewStyle().
-			Foreground(lipgloss.Color("208")). // Orange
+			Foreground(neonPurple). // Purple for large
 			Bold(true)
 
 	sizeHugeStyle = lipgloss.NewStyle().
-			Foreground(lipgloss.Color("196")). // Bright red
+			Foreground(neonPink). // Pink for huge
 			Bold(true)
 
-	// Counter styles - cyan
+	// Counters - Neon yellow (stands out)
 	counterStyle = lipgloss.NewStyle().
-			Foreground(lipgloss.Color("51")). // Bright cyan
+			Foreground(neonYellow).
 			Bold(true)
 
-	// Path style - light blue
+	// Paths - Electric blue
 	pathStyle = lipgloss.NewStyle().
-			Foreground(lipgloss.Color("117")) // Light blue
+			Foreground(electricBlue)
 
-	// Help text - dimmed but readable
+	// Help text - Muted purple
 	helpStyle = lipgloss.NewStyle().
-			Foreground(lipgloss.Color("243")). // Medium gray
+			Foreground(lipgloss.Color("141")).
 			Italic(true).
 			MarginTop(1)
 
-	// Footer - bright yellow with bold
+	// Footer - Neon yellow
 	footerStyle = lipgloss.NewStyle().
-			Foreground(lipgloss.Color("226")). // Bright yellow
+			Foreground(neonYellow).
 			Bold(true).
 			MarginTop(1)
 
-	// Progress bar style
+	// Progress bar - Cyan gradient
 	progressBarStyle = lipgloss.NewStyle().
-			Foreground(lipgloss.Color("51")) // Bright cyan
+			Foreground(neonCyan)
 
-	// Warning style for confirmation
+	// Warning - Neon yellow
 	warningStyle = lipgloss.NewStyle().
-			Foreground(lipgloss.Color("208")). // Orange
+			Foreground(neonYellow).
 			Bold(true)
 
-	// Success style
+	// Success - Teal
 	successStyle = lipgloss.NewStyle().
-			Foreground(lipgloss.Color("46")). // Bright green
+			Foreground(neonTeal).
 			Bold(true)
 
-	// Separator style
+	// Separators - Deep purple
 	separatorStyle = lipgloss.NewStyle().
-			Foreground(lipgloss.Color("99")) // Purple
+			Foreground(deepPurple)
+
+	// Icons - Hot pink
+	iconStyle = lipgloss.NewStyle().
+			Foreground(neonPink)
+
+	// Box borders - Deep purple
+	boxStyle = lipgloss.NewStyle().
+			Border(lipgloss.RoundedBorder()).
+			BorderForeground(deepPurple).
+			Padding(1, 2)
+
+	// Accent styles matching palette
+	accentCyan = lipgloss.NewStyle().
+			Foreground(neonCyan).
+			Bold(true)
+
+	accentPink = lipgloss.NewStyle().
+			Foreground(neonPink).
+			Bold(true)
+
+	accentYellow = lipgloss.NewStyle().
+			Foreground(neonYellow).
+			Bold(true)
+
+	accentPurple = lipgloss.NewStyle().
+			Foreground(neonPurple).
+			Bold(true)
 )
 
 // View renders the UI
@@ -128,12 +165,16 @@ func (m Model) View() string {
 func (m Model) renderScanning() string {
 	var s strings.Builder
 
+	// Colorful title with gradient effect
 	s.WriteString(titleStyle.Render(fmt.Sprintf("🔍 VenvCleaner v%s", m.version)))
+	s.WriteString("\n")
+	s.WriteString(accentCyan.Render("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"))
 	s.WriteString("\n\n")
+
 	s.WriteString(headerStyle.Render(fmt.Sprintf("%s Scanning for .venv folders...", m.spinner.View())))
 	s.WriteString("\n\n")
 
-	// Show current path being scanned
+	// Show current path being scanned with box
 	currentPath := m.currentScanProg.CurrentPath
 	if currentPath != "" {
 		// Make path relative to start if possible
@@ -147,20 +188,25 @@ func (m Model) renderScanning() string {
 			currentPath = "..." + currentPath[len(currentPath)-maxLen+3:]
 		}
 
-		s.WriteString(subheaderStyle.Render("Currently scanning:"))
+		s.WriteString(accentPink.Render("📂 ") + subheaderStyle.Render("Currently scanning:"))
 		s.WriteString("\n")
-		s.WriteString(pathStyle.Render(currentPath))
+		s.WriteString("   " + pathStyle.Render(currentPath))
 		s.WriteString("\n\n")
 	}
 
-	// Show progress counters with colors
-	s.WriteString(fmt.Sprintf("📁 Folders scanned: %s\n",
-		counterStyle.Render(fmt.Sprintf("%d", m.currentScanProg.FoldersScanned))))
-	s.WriteString(fmt.Sprintf("✅ Repos with .venv: %s\n",
-		successStyle.Render(fmt.Sprintf("%d", m.currentScanProg.ReposFound))))
-
+	// Show progress counters with colorful icons and numbers
+	s.WriteString(accentYellow.Render("📁 ") +
+		headerStyle.Render("Folders scanned: ") +
+		counterStyle.Render(fmt.Sprintf("%d", m.currentScanProg.FoldersScanned)))
 	s.WriteString("\n")
-	s.WriteString(helpStyle.Render("Press q to quit"))
+	s.WriteString(accentCyan.Render("✅ ") +
+		headerStyle.Render("Repos with .venv: ") +
+		successStyle.Render(fmt.Sprintf("%d", m.currentScanProg.ReposFound)))
+
+	s.WriteString("\n\n")
+	s.WriteString(accentCyan.Render("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"))
+	s.WriteString("\n")
+	s.WriteString(helpStyle.Render("💡 Press q to quit"))
 
 	return s.String()
 }
@@ -168,16 +214,18 @@ func (m Model) renderScanning() string {
 func (m Model) renderSelecting() string {
 	if len(m.repos) == 0 {
 		return titleStyle.Render(fmt.Sprintf("🔍 VenvCleaner v%s", m.version)) + "\n\n" +
-			"No repositories with .venv folders found.\n\n" +
-			helpStyle.Render("Press any key to exit")
+			subheaderStyle.Render("No repositories with .venv folders found.") + "\n\n" +
+			helpStyle.Render("💡 Press any key to exit")
 	}
 
 	var s strings.Builder
 
-	// Title and header
+	// Title with decorative line
 	s.WriteString(titleStyle.Render(fmt.Sprintf("🔍 VenvCleaner v%s", m.version)))
+	s.WriteString("\n")
+	s.WriteString(accentPink.Render("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"))
 	s.WriteString("\n\n")
-	s.WriteString(headerStyle.Render("Select .venv folders to remove:"))
+	s.WriteString(accentCyan.Render("🗂️  ") + headerStyle.Render("Select .venv folders to remove:"))
 	s.WriteString("\n")
 
 	// Sort mode indicator
@@ -205,15 +253,17 @@ func (m Model) renderSelecting() string {
 
 	// Footer with controls and summary
 	s.WriteString("\n")
-	s.WriteString(footerStyle.Render(fmt.Sprintf(
-		"Selected: %d/%d | Total size: %s",
-		m.selectedCount(),
-		len(m.repos),
-		formatSize(m.selectedSize()),
+	s.WriteString(accentYellow.Render("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"))
+	s.WriteString("\n")
+	s.WriteString(accentPink.Render("📊 ") + footerStyle.Render(fmt.Sprintf(
+		"Selected: %s/%s | Total size: %s",
+		counterStyle.Render(fmt.Sprintf("%d", m.selectedCount())),
+		counterStyle.Render(fmt.Sprintf("%d", len(m.repos))),
+		successStyle.Render(formatSize(m.selectedSize())),
 	)))
 	s.WriteString("\n")
 	s.WriteString(helpStyle.Render(
-		"↑/↓: navigate | space: toggle | enter: confirm | t/s/n: sort | a: select all | d: deselect all | q: quit",
+		"💡 ↑/↓: navigate | ⎵: toggle | ↵: confirm | t/s/n: sort | a/d: all/none | q: quit",
 	))
 
 	return s.String()
@@ -284,29 +334,41 @@ func (m Model) renderCleaning() string {
 func (m Model) renderDone() string {
 	var s strings.Builder
 
-	s.WriteString(successStyle.Render("✅ Done!"))
+	// Big celebration header
+	s.WriteString(successStyle.Render("✨ ✅ Done! ✅ ✨"))
+	s.WriteString("\n")
+	s.WriteString(accentCyan.Render("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"))
 	s.WriteString("\n\n")
 
 	if len(m.repos) == 0 {
-		s.WriteString(subheaderStyle.Render("No repositories with .venv folders were found."))
+		s.WriteString(accentYellow.Render("ℹ️  ") + subheaderStyle.Render("No repositories with .venv folders were found."))
 		s.WriteString("\n")
 	} else if m.cleanedCount > 0 {
-		s.WriteString(headerStyle.Render(fmt.Sprintf(
-			"Successfully removed %s .venv folders",
-			counterStyle.Render(fmt.Sprintf("%d", m.cleanedCount)),
+		// Success message with colors
+		s.WriteString(accentPink.Render("🎯 ") + headerStyle.Render(fmt.Sprintf(
+			"Successfully removed %s .venv folders!",
+			successStyle.Render(fmt.Sprintf("%d", m.cleanedCount)),
 		)))
 		s.WriteString("\n\n")
-		s.WriteString(footerStyle.Render(fmt.Sprintf(
-			"🎉 Total space freed: %s",
-			successStyle.Render(formatSize(m.totalCleaned)),
-		)))
+
+		// Big space freed announcement
+		s.WriteString(accentYellow.Render("💾 ") + footerStyle.Render("Total space freed: "))
+		s.WriteString(successStyle.Render(formatSize(m.totalCleaned)))
+		s.WriteString("\n\n")
+
+		// Celebration emojis
+		s.WriteString(accentCyan.Render("🎉 🚀 ✨ 🎊 "))
+		s.WriteString(headerStyle.Render("Your disk is cleaner!"))
+		s.WriteString(accentCyan.Render(" 🎊 ✨ 🚀 🎉"))
 	} else {
-		s.WriteString(subheaderStyle.Render("No folders were removed."))
+		s.WriteString(accentYellow.Render("ℹ️  ") + subheaderStyle.Render("No folders were removed."))
 		s.WriteString("\n")
 	}
 
 	s.WriteString("\n\n")
-	s.WriteString(helpStyle.Render("Press any key to exit"))
+	s.WriteString(accentPink.Render("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"))
+	s.WriteString("\n")
+	s.WriteString(helpStyle.Render("💡 Press any key to exit"))
 
 	return s.String()
 }

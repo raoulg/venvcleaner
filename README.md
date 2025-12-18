@@ -2,7 +2,7 @@
 
 A beautiful, colorful terminal UI for finding and removing Python virtual environments (.venv folders) in your git repositories.
 
-![Version](https://img.shields.io/badge/version-1.0.0-blue)
+![Version](https://img.shields.io/badge/version-1.0.1-blue)
 ![Platform](https://img.shields.io/badge/platform-macOS%20%7C%20Linux%20%7C%20Windows-green)
 
 ## Features
@@ -153,9 +153,47 @@ This helps you identify which virtual environments are actively used vs. abandon
 
 ## Requirements
 
-- Go 1.21 or higher
+- **Go 1.21 or higher** - [How to install Go](#installing-go)
 - Works on: macOS, Linux, Windows, WSL
 - Optional: [rip](https://github.com/nivekuil/rip) for safer deletion (Unix/macOS only)
+
+### Installing Go
+
+If you don't have Go installed:
+
+**Official Installation:**
+- Visit [go.dev/dl](https://go.dev/dl/)
+- Download the installer for your platform
+- Follow the installation instructions
+
+**Quick Install (Platform-Specific):**
+
+```bash
+# macOS (using Homebrew)
+brew install go
+
+# Linux (Ubuntu/Debian)
+sudo apt update
+sudo apt install golang-go
+
+# Windows (using Chocolatey)
+choco install golang
+
+# Or use winget
+winget install GoLang.Go
+```
+
+**Verify Installation:**
+```bash
+go version
+# Should show: go version go1.21.x or higher
+```
+
+**For `go install` to work**, make sure your `GOPATH/bin` is in your PATH:
+```bash
+# Add to your ~/.bashrc, ~/.zshrc, or equivalent
+export PATH="$PATH:$(go env GOPATH)/bin"
+```
 
 ## Platform-Specific Notes
 
