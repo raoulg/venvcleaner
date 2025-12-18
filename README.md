@@ -24,13 +24,13 @@ A beautiful, colorful terminal UI for finding and removing Python virtual enviro
 ### Using go install
 
 ```bash
-go install github.com/rgrouls/venvcleaner@latest
+go install github.com/raoulg/venvcleaner@latest
 ```
 
 ### Build from source
 
 ```bash
-git clone https://github.com/rgrouls/venvcleaner.git
+git clone https://github.com/raoulg/venvcleaner.git
 cd venvcleaner
 make build
 ```
@@ -178,7 +178,7 @@ Once you've built your app, here's how to share it with others:
 
 #### Option 1: Go Install (Recommended)
 
-For users to install via `go install github.com/rgrouls/venvcleaner@latest`:
+For users to install via `go install github.com/raoulg/venvcleaner@latest`:
 
 1. **Push your code to GitHub**:
    ```bash
@@ -195,7 +195,7 @@ For users to install via `go install github.com/rgrouls/venvcleaner@latest`:
 
 That's it! Users can now run:
 ```bash
-go install github.com/rgrouls/venvcleaner@latest
+go install github.com/raoulg/venvcleaner@latest
 ```
 
 #### Option 2: GitHub Releases (For Binary Distribution)
